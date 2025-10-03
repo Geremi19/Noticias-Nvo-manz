@@ -1,0 +1,251 @@
+.noticias-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 4rem 0;
+}
+
+.noticias-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 4rem;
+}
+
+/* Sección de Noticias */
+.news-section {
+  flex: 1;
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.title-underline {
+  width: 60px;
+  height: 3px;
+  background-color: #183354;
+  border-radius: 2px;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.news-card {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
+}
+
+.news-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: #183354;
+}
+
+.news-image-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.news-card:hover .news-image {
+  transform: scale(1.1);
+}
+
+.news-content {
+  padding: 1.5rem;
+}
+
+.news-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #183354;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; /* espacio entre icono y texto */
+  font-family: "Inter" sans-serif,; /* tipografía diferente */
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #888; /* gris más tenue */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.news-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.news-dot {
+  color: #183354;
+}
+
+.news-description {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: #545E69;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Sección de Redes Sociales */
+.social-section {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease;
+}
+
+.social-button:hover::before {
+  left: 100%;
+}
+
+.social-button:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon {
+  font-size: 1.25rem;
+  width: 24px;
+  text-align: center;
+}
+
+.social-name {
+  flex: 1;
+}
+
+/* Instagram gradient */
+.social-button:nth-child(2) {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .noticias-content {
+    flex-direction: column;
+    padding: 0 1.5rem;
+  }
+
+  .social-section {
+    width: 100%;
+  }
+
+  .social-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .social-button {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .noticias-page {
+    padding: 2rem 0;
+  }
+
+  .noticias-content {
+    gap: 3rem;
+    padding: 0 1rem;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .social-buttons {
+    flex-direction: column;
+  }
+
+  .social-button {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .news-image-wrapper {
+    height: 180px;
+  }
+
+  .news-content {
+    padding: 1.25rem;
+  }
+}

@@ -1,19 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-import Noticias from "./components/Weeekly News/News";
-
-// 🔹 Componente que controla si se muestra o no el Header
+import News from "./components/News/News";
+import Noticia1 from "./Noticias/Noticia1";
+import Weekly from "./components/Weekly/Weekly";
 function Layout({ children }) {
   const location = useLocation();
-  
-  // lista de rutas donde NO quieres mostrar el header
   const rutasSinHeader = ["/noticias"];
 
   return (
     <>
       {!rutasSinHeader.includes(location.pathname) && <Header />}
-      <main style={{ padding: "20px" }}>{children}</main>
+      <main>{children}</main>
     </>
   );
 }
@@ -23,9 +20,17 @@ export default function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/noticias" element={<Noticias />} />
-          
+          <Route 
+            path="/" 
+            //aqui se colocan cada componente
+            element={
+              <>
+                <News />
+                <Weekly />
+              </>
+            } 
+          />
+          <Route path="/noticias" element={<Noticia1 />} />
         </Routes>
       </Layout>
     </Router>
