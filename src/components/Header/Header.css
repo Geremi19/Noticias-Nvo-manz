@@ -1,6 +1,35 @@
+.containerAll{
+    width: 100%;
+}
+
 .header{
-    background-color: #333;
-    color: #fff;
+    width: 100%;
+    height: 10px;
+    background-color: #183354 ;
+    display: flex;
+    flex-direction:row;
     padding: 20px;
-    text-align: center;
+    align-items: center;
+}
+
+.titulo{
+    width: 70%;
+}
+
+.nav{
+    height: 100%;
+    display: flex;
+    color: #fff;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+    text-decoration: none;
+    align-items: center;
+}
+
+.txtNav{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
 }

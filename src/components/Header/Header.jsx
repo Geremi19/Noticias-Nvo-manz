@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
-
+import "./Header.css"
 export default function Header() {
   return (
-    <header style={{ padding: "20px", backgroundColor: "#183C6F", color: "white" }}>
-      <h1>Mi Portal</h1>
-      <nav>
-        <Link to="/" style={{ marginRight: "15px", color: "white", textDecoration: "none" }}>
+    <header className="header">
+      <h1 className="titulo">Mi Portal</h1>
+      <nav className="nav">
+        <Link to="/" className="txtNav" >
           Inicio
         </Link>
-        <Link to="/noticias" style={{ color: "white", textDecoration: "none" }}>
+        <Link to="/noticias" className="txtNav">
           Noticias
         </Link>
       </nav>
