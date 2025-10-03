@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header/Header";
 import "./Noticias.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../components/Footer/Footer";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Noticia1() {
   return (
     <div className="containerAll">
-        <Header/>
+        <div className="containerBtnVolver">
+          <i className="fa-solid fa-arrow-left"></i> 
+        </div>
         <div className="containerImg">
             <img className="imgNoticia" src="../../public/buque.jpg"/>
         </div>
@@ -44,19 +47,26 @@ export default function Noticia1() {
             <div className="formUno">
               <div className="name">
                 <p className="label">Nombre</p>
-                <input className="input" placeholder="Nombre Usuario" type="text" name="nombre" id="" />
+                <input className="input" value="" placeholder="Nombre Usuario" type="text" name="nombre" id="" />
               </div>
               <div className="mail">
                 <p className="label">correo</p>
-                <input className="input" placeholder="Correo Electrónico"  type="text" name="mail" id="" />
+                <input className="input" value="" placeholder="Correo Electrónico"  type="text" name="mail" id="" />
               </div>
             </div>
             <div className="formDos">
               <p className="label">Comentario</p>
-              <input type="text" placeholder="Comentario" name="coment" id="" className="inputComent" />
+              <input type="text" value="" placeholder="Comentario" name="coment" id="" className="inputComent" />
             </div>
           </div>
+          <div className="containerBtnAdd">
+              <div className="btnAdd">
+                <i class="fa-solid fa-comment-dots"></i>
+                <p>Enviar comentario</p>  
+              </div>
+            </div>
         </div>
+      <Footer/>
     </div>
   );
 }

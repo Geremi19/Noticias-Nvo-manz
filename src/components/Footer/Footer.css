@@ -1,0 +1,56 @@
+.containerAllFooter{
+    background-color: #183354 ;
+    display: flex;
+    padding: 0 0 20px 0;
+}
+
+.containerFooterUno{
+    width: 40%;
+    color: #fff;
+    justify-content: center;
+    align-self: center;
+    display: flex;
+    font-size: 35px;
+    padding: 0;
+}
+
+.containerFooterDos{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+
+.contacto{
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+}
+
+.contacto p{
+    color: #FDFDFD;
+    cursor: pointer;
+}
+
+.ContainerMedia{
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    right: 5%;
+}
+
+.media{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    bottom: 1px;
+}
+
+.media i{
+    margin: 0 0 2px 20px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}

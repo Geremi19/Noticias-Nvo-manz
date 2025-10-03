@@ -2,6 +2,18 @@
     width: 100%;
 }
 
+.containerBtnVolver{
+    position: fixed;
+    bottom: 200px;
+    left: 20px;
+    background-color: #0088FF;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
 .containerImg{
     display: flex;
     width: 100%;
@@ -118,4 +130,32 @@
     height: 100px;
     border-radius: 5px;
     width: 90%;
+}
+
+.containerBtnAdd{
+    display: flex;
+    width: 100%;
+    bottom: 10px;
+    margin: 20px 0;
+    justify-content: right;
+}
+
+.btnAdd{
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #0088FF;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.btnAdd p{
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
 }
