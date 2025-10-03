@@ -8,9 +8,11 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function Noticia1() {
   return (
     <div className="containerAll">
-        <div className="containerBtnVolver">
-          <i className="fa-solid fa-arrow-left"></i> 
-        </div>
+        <Link to="/home">
+          <div className="containerBtnVolver">
+            <i className="fa-solid fa-arrow-left"></i> 
+         </div>
+        </Link>
         <div className="containerImg">
             <img className="imgNoticia" src="../../public/buque.jpg"/>
         </div>
