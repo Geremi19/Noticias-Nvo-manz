@@ -1,6 +1,65 @@
-.header{
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
+.h-wrapper {
+  background-color: #ffffff !important;
+  width: 100%;
+}
+
+.h-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px; /* Fija la altura del header */
+  padding: 0 2rem; /* Opcional: padding horizontal */
+  overflow: hidden; /* Previene que contenido grande se desborde */
+}
+
+/* Logo */
+.image-logo {
+  height: 90px; /* Controlas el tamaño por altura */
+  width: auto; /* Mantiene proporción */
+  object-fit: contain; /* Asegura que la imagen no se deforme */
+}
+
+/* Menú */
+.h-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Hover en links del menú */
+.h-menu > *:hover {
+  cursor: pointer;
+  color: #555; /* Opcional: efecto visual */
+}
+
+/*Selecciona en general para class menu*/
+.h-menu > *:hover {
+  cursor: pointer;
+}
+
+.menu-icon {
+  display: none;
+}
+/*Media query para el menu en mobile*/
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+  .h-menu {
+    z-index: 99;
+    color: var(--black);
+    position: absolute;
+    gap: 2rem;
+    font-weight: 500;
+    flex-direction: column;
+    right: 4rem;
+    top: 3rem;
+    background: white;
+    display: flex;
+    border-radius: 10px;
+    transition: all 200ms ease;
+    align-items: flex-start;
+    padding: 3rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  }
 }
