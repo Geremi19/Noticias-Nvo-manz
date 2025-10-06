@@ -1,0 +1,57 @@
+.containerAll{
+    width: 100%;
+}
+
+.containerTitulo{
+    width: 90%;
+    margin: 20px auto;
+
+}
+
+.ContainerSecciones{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.containerAddC{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+
+.puntoAzul{
+    width: 5px;
+    height: 10px;
+    background-color: #0088FF;
+    margin: 0 5px;
+    border-radius: 50px;
+}
+
+.containerSecVideos{
+    width: 70%;
+}
+
+.containerSecImp{
+    width: 30%;
+}
+
+.containerWrap{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin:auto;
+}
+
+.video{
+    width: 100%;
+    margin: 10px 1px;
+}
+
+
+.videoImg img{
+    border-radius: 15px;
+}
+

@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
-import "./Header.css"
+import React from "react";
+import "./Header.css";
+
 export default function Header() {
   return (
     <header className="header">
-      <h1 className="titulo">Mi Portal</h1>
-      <nav className="nav">
-        <Link to="/" className="txtNav" >
-          Inicio
+      <div className="header-container">
+        <Link to="/" className="logo-link">
+          <img src="/pescado_logo.png" alt="logo" className="logo" />
         </Link>
-        <Link to="/noticias" className="txtNav">
-          Noticias
-        </Link>
-      </nav>
+        
+        <nav className="nav">
+          <Link to="/" className="nav-link">Inicio</Link>
+          <Link to="/noticias" className="nav-link">Noticias</Link>
+          <Link to="/videos" className="nav-link">Videos</Link>
+        </nav>
+      </div>
     </header>
   );
 }
