@@ -1,5 +1,4 @@
-import { newsItems, socialMedia } from "../../utils/data_weekly"; // <-- import desde utils
-
+import { newsItems, socialMedia } from "../../utils/data_weekly";
 import "./Weekly.css";
 
 export default function Weekly() {
@@ -10,7 +9,9 @@ export default function Weekly() {
         <div className="news-section">
           <div className="section-header">
             <h2 className="section-title">Mejores noticias semanales</h2>
-            <div className="title-underline"></div>
+            <div className="visual-bar">
+              <div className="blue-indicator"></div>
+            </div>
           </div>
 
           <div className="news-grid">
@@ -18,7 +19,7 @@ export default function Weekly() {
               <article key={item.id} className="news-card">
                 <div className="news-image-wrapper">
                   <img
-                    src={item.image}
+                    src={item.image || "/placeholder.svg"}
                     alt={item.title}
                     className="news-image"
                   />
@@ -26,11 +27,9 @@ export default function Weekly() {
                 <div className="news-content">
                   <h3 className="news-title">{item.title}</h3>
                   <div className="news-meta">
-                    {/* icono de fecha */}
                     <span className="news-date">
                       {item.date.icon} {item.date.date}
                     </span>
-                    {/* icono de tiempo */}
                     <span className="news-time">
                       {item.readTime.icon} {item.readTime.time}
                     </span>
@@ -46,7 +45,9 @@ export default function Weekly() {
         <div className="social-section">
           <div className="section-header">
             <h2 className="section-title">Follow Us On</h2>
-            <div className="title-underline"></div>
+            <div className="visual-bar">
+              <div className="blue-indicator"></div>
+            </div>
           </div>
 
           <div className="social-buttons">

@@ -5,6 +5,27 @@
   padding: 2rem 0;
 }
 
+.blue-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 5%; /* Ajusta este porcentaje para cambiar el largo del bloque azul */
+  background-color: #4285f4; /* Azul */
+  border-radius: 6px;
+}
+
+.visual-bar {
+  width: 100%;
+  max-width: 900px;
+  height: 12px;
+  background-color: #e6e6e6; /* Gris claro */
+  border-radius: 6px;
+  position: relative; /* Clave para posicionar el indicador azul */
+  overflow: hidden;
+  margin-top: 15px;
+}
+
 .carousel {
   max-width: 1300px;
   margin: 0 auto;

@@ -3,6 +3,8 @@ import Header from "./components/Header/Header";
 import News from "./components/News/News";
 import Noticia1 from "./Noticias/Noticia1";
 import Weekly from "./components/Weekly/Weekly";
+import Instagram from "./components/Instagram/Instagram";
+import Footer from "./components/Footer/Footer";
 function Layout({ children }) {
   const location = useLocation();
   const rutasSinHeader = ["/noticias"];
@@ -27,6 +29,8 @@ export default function App() {
               <>
                 <News />
                 <Weekly />
+                <Instagram />
+                <Footer />
               </>
             } 
           />
