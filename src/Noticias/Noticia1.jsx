@@ -8,9 +8,11 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function Noticia1() {
   return (
     <div className="containerAll">
-        <div className="containerBtnVolver">
-          <i className="fa-solid fa-arrow-left"></i> 
-        </div>
+        <Link to="/">
+          <div className="containerBtnVolver">
+            <i className="fa-solid fa-arrow-left"></i> 
+         </div>
+        </Link>
         <div className="containerImg">
             <img className="imgNoticia" src="../../public/buque.jpg"/>
         </div>
@@ -29,6 +31,7 @@ export default function Noticia1() {
                 Si analizamos sus números, encontraremos que cuenta con capacidad estática de 49,069 Teu’s y dinámica de 2,132,667 Teu’s. Logrando así movilizar más de 14 millones de toneladas anualmente durante 2019 y 2020.
                 Para ponerlo en contexto, el segundo puerto más importante de México es el de Lázaro Cárdenas en Michoacán y moviliza 1,1 millones de Teu´s. El tercer puerto es el de Veracruz y tiene una capacidad de movilizar 965 mil Teu´s. 
                 Es decir, el Puerto de Manzanillo podría absorber la capacidad de movimiento de ambos puertos mencionados.
+                Es decir, el Puerto de Manzanillo podría absorber la capacidad de movimiento de ambos puertos mencionados. origin/Kevin
                 <br /> <br />
                 Te invitamos a seguir leyendo este artículo si quieres saber más sobre la historia y la operación del Puerto de Manzanillo.
                 Importancia del Puerto de Manzanillo para el comercio en México El Puerto del Manzanillo ocupa un lugar estratégico para el comercio exterior, ya que su zona de influencia internacional está orientada hacia la costa oeste del Continente Americano y la Cuenca del Pacífico.

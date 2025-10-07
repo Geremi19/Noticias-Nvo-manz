@@ -1,3 +1,9 @@
+/* Fuente global */
+body, html {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* Contenedor principal */
 .noticias-container {
   width: 100%;
   min-height: 70vh;
@@ -5,27 +11,30 @@
   padding: 2rem 0;
 }
 
+/* Indicador azul */
 .blue-indicator {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 5%; /* Ajusta este porcentaje para cambiar el largo del bloque azul */
-  background-color: #4285f4; /* Azul */
+  width: 5%;
+  background-color: #4285f4;
   border-radius: 6px;
 }
 
+/* Barra visual */
 .visual-bar {
   width: 100%;
   max-width: 900px;
   height: 12px;
-  background-color: #e6e6e6; /* Gris claro */
+  background-color: #e6e6e6;
   border-radius: 6px;
-  position: relative; /* Clave para posicionar el indicador azul */
+  position: relative;
   overflow: hidden;
   margin-top: 15px;
 }
 
+/* Carrusel principal */
 .carousel {
   max-width: 1300px;
   margin: 0 auto;
@@ -85,14 +94,17 @@
   color: #ffffff;
   padding: 2rem;
   max-width: 900px;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
-.carousel-title {
+.news-carousel-title {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.2;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 .carousel-subtitle {
@@ -100,8 +112,11 @@
   font-weight: 400;
   opacity: 0.95;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
+/* Botones del carrusel */
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -118,6 +133,7 @@
   transition: all 0.3s ease;
   z-index: 10;
   color: #183354;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 .carousel-button:hover {
@@ -133,6 +149,7 @@
   right: 2rem;
 }
 
+/* Dots de navegación */
 .carousel-dots {
   position: absolute;
   bottom: 2rem;
@@ -171,7 +188,7 @@
     margin: 0 1rem;
   }
 
-  .carousel-title {
+  .news-carousel-title {
     font-size: 2rem;
   }
 
@@ -198,7 +215,7 @@
     height: 350px;
   }
 
-  .carousel-title {
+  .news-carousel-title {
     font-size: 1.5rem;
   }
 

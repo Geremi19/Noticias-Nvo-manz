@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+
 *,
 *::before,
 *::after {
@@ -49,4 +50,57 @@ button {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 1.5rem;
+/* Reset y estilos globales */
+:root {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9f9f9; /* color de fondo general */
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* Enlaces generales */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Imágenes */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Botones generales */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Contenedores generales */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 }
