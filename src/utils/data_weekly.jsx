@@ -61,8 +61,8 @@ export const newsItems = [
 ];
 
 export const socialMedia = [
-  { name: "Facebook", icon: <TiSocialFacebook />, color: "#1877F2", url: "#" },
-  { name: "Instagram", icon: <TiSocialInstagram />, color: "#E4405F", url: "#" },
-  { name: "Youtube", icon: <TiSocialYoutube />, color: "#FF0000", url: "#" },
-  { name: "X", icon: <FaXTwitter />, color: "#000000", url: "#" },
+  { name: "Facebook", icon: <TiSocialFacebook />, color: "#1877F2", url: "https://www.facebook.com/profile.php?id=61581423340910" },
+  { name: "Instagram", icon: <TiSocialInstagram />, color: "#E4405F", url: "https://www.instagram.com/noticiascuyutlan/" },
+  { name: "Youtube", icon: <TiSocialYoutube />, color: "#FF0000", url: "https://www.youtube.com/@Cuyutl%C3%A1nNoticias" },
+  { name: "X", icon: <FaXTwitter />, color: "#000000", url: "https://x.com/NotiCuyutlan" },
 ];

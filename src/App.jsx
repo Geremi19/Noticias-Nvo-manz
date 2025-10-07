@@ -5,9 +5,10 @@ import Noticia1 from "./Noticias/Noticia1";
 import Weekly from "./components/Weekly/Weekly";
 import Instagram from "./components/Instagram/Instagram";
 import Footer from "./components/Footer/Footer";
+import SecNews from "./Sec-News/Sec-news";
 function Layout({ children }) {
   const location = useLocation();
-  const rutasSinHeader = ["/noticias"];
+  const rutasSinHeader = ["/noticias,/sec-news"];
 
   return (
     <>
@@ -35,6 +36,7 @@ export default function App() {
             } 
           />
           <Route path="/noticias" element={<Noticia1 />} />
+          <Route path="/sec-news" element={<SecNews />} />
         </Routes>
       </Layout>
     </Router>
