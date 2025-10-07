@@ -17,6 +17,7 @@ function Layout({ children }) {
     <>
       {!rutasSinHeader.includes(location.pathname) && <Header />}
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
@@ -33,7 +34,6 @@ export default function App() {
                 <News />
                 <Weekly />
                 <Instagram />
-                <Footer />
               </>
             } 
           />

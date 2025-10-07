@@ -10,25 +10,25 @@ export default function Noticias() {
       image: "./News_image/puerto1.jpg",
       title: "Puerto de Manzanillo: ¿por qué es el más importante de México?",
       subtitle: "Puerto de Manzanillo: ¿por qué es el más importante de México?",
-      link: "/noticia1" // <-- ruta hacia tu componente Noticia1
+      link: "/noticia1" 
     },
     {
       image: "./News_image/puerto2.jpg",
       title: "Título de la segunda noticia",
       subtitle: "Descripción de la segunda noticia",
-      link: "/noticia2"
+      link: "/noticia1"
     },
     {
       image: "./News_image/puerto3.jpg",
       title: "Título de la tercera noticia",
       subtitle: "Descripción de la tercera noticia",
-      link: "/noticia3"
+      link: "/noticia1"
     },
     {
       image: "./News_image/puerto4.jpg",
       title: "Título de la cuarta noticia",
       subtitle: "Descripción de la cuarta noticia",
-      link: "/noticia4"
+      link: "/noticia1"
     }
   ];
 

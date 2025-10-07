@@ -69,7 +69,6 @@ export default function Noticia1() {
               </div>
             </div>
         </div>
-      <Footer/>
     </div>
   );
 }

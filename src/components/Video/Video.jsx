@@ -281,7 +281,6 @@ export default function Video() {
         </div>
       )}
 
-      <Footer></Footer>
     </div>
   );
 }

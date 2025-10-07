@@ -1,4 +1,4 @@
-import "./Footer.css"
+import "./Footer.css";
 
 export default function Footer() {
   return (
@@ -25,24 +25,42 @@ export default function Footer() {
               Accessibility
             </a>
           </nav>
-          <p className="footer-copyright">© 2023 Newsletter, All rights reserved</p>
+          <p className="footer-copyright">
+            © 2023 Newsletter, All rights reserved
+          </p>
         </div>
 
         <div className="footer-social">
-          <a href="#" className="social-icon" aria-label="Facebook">
+          <a
+            href="https://www.facebook.com/profile.php?id=61581423340910"
+            className="social-icon"
+            aria-label="Facebook"
+          >
             <i className="fa-brands fa-facebook"></i>
           </a>
-          <a href="#" className="social-icon" aria-label="Instagram">
+          <a
+            href="https://www.instagram.com/noticiascuyutlan/"
+            className="social-icon"
+            aria-label="Instagram"
+          >
             <i className="fa-brands fa-instagram"></i>
           </a>
-          <a href="#" className="social-icon" aria-label="Twitter">
+          <a
+            href="https://x.com/NotiCuyutlan"
+            className="social-icon"
+            aria-label="Twitter"
+          >
             <i className="fa-brands fa-x-twitter"></i>
           </a>
-          <a href="#" className="social-icon" aria-label="YouTube">
+          <a
+            href="https://www.youtube.com/@Cuyutl%C3%A1nNoticias"
+            className="social-icon"
+            aria-label="YouTube"
+          >
             <i className="fa-brands fa-youtube"></i>
           </a>
         </div>
       </div>
     </footer>
-  )
+  );
 }
