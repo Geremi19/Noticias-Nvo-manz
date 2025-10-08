@@ -7,7 +7,7 @@ import Weekly from "./components/Weekly/Weekly";
 import Instagram from "./components/Instagram/Instagram";
 import Footer from "./components/Footer/Footer";
 import SecNews from "./Sec-News/Sec-news";
-
+import "./Firebase/client";
 function Layout({ children }) {
   const location = useLocation();
   // Array separado correctamente para que funcione la ocultación del Header
