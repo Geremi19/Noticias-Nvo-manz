@@ -1,51 +1,125 @@
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./Consola.css"
-import { faImage, faCirclePlus, faPaperPlane   } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import "./Consola.css";
+import { db } from "../../Firebase/client"; // ajusta la ruta
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function Consola() {
+  const [titulo, setTitulo] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [descripcion, setDescripcion] = useState("");
+  const [imagen, setImagen] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [mensaje, setMensaje] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!titulo || !nombre || !fecha || !descripcion) {
+      setMensaje("Por favor llena todos los campos.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      let imageUrl = "";
+      if (imagen) {
+        const storage = getStorage();
+        const storageRef = ref(storage, `noticias/${imagen.name}`);
+        await uploadBytes(storageRef, imagen);
+        imageUrl = await getDownloadURL(storageRef);
+      }
+
+      await addDoc(collection(db, "noticias"), {
+        titulo,
+        nombre,
+        fecha,
+        cuerpo: descripcion,
+        imagen: imageUrl,
+        creadoEn: Timestamp.now(),
+      });
+
+      setMensaje("✅ Noticia publicada correctamente!");
+      setTitulo("");
+      setNombre("");
+      setFecha("");
+      setDescripcion("");
+      setImagen(null);
+    } catch (error) {
+      console.error("Error al subir noticia:", error);
+      setMensaje("❌ Error al subir noticia.");
+    }
+    setLoading(false);
+  };
+
   return (
-    <div className="ContainerAll">
-      <div className="titleConsola">
-        <h4 >Añadir Publicación</h4>
+    <div className="container-all">
+      <div className="tabs-container">
+        <h3 className="tab active">Añadir Publicación</h3>
       </div>
-        <div className="containerFormAdd">
-          <div className="containerInformacion">
-            <div className="containerTituloN">
-              <h5>Titulo</h5>
-              <input type="text" className="text"/>
-            </div>
-            <div className="containerTituloN">
-              <h5>Creador</h5>
-              <input type="text" className="text" id="text"/>
-            </div>
-            <div className="containerTituloN">
-              <h5>Fecha</h5>
-              <input type="date" className="text" id="tex"/>
-            </div>
-            <div className="containerDescN">
-              <h5>Descripción</h5>
-              <div className="containerSombraImg">
-                <textarea type="tex" className="InputDesc" placeholder="Escribe..." />
-              </div>
-            </div>
+
+      <form onSubmit={handleSubmit}>
+        <div className="form-grid">
+          <div className="form-field">
+            <label>Título</label>
+            <input
+              type="text"
+              className="input-field"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+            />
           </div>
-          <div className="containerImgN">
-            <h5>Añadir Image</h5>
-            <div className="imgSelect">
-              <FontAwesomeIcon icon={faImage} />
-              <h5>Escoge una img para la noticia</h5>
-              <div className="btnSubir">
-                <FontAwesomeIcon icon={faCirclePlus} />
-                <h5>Seleccionar</h5>
-              </div>
-            </div>
-            <div className="btnPublicar">
-              <FontAwesomeIcon icon={faPaperPlane} />
-              <h5>Publicar</h5>
+
+          <div className="form-field">
+            <label>Creador</label>
+            <input
+              type="text"
+              className="input-field"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+          </div>
+
+          <div className="form-field">
+            <label>Fecha</label>
+            <input
+              type="date"
+              className="input-field"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+            />
+          </div>
+
+          <div className="form-field">
+            <label>Añade imagen</label>
+            <div className="image-upload-zone">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImagen(e.target.files[0])}
+              />
             </div>
           </div>
         </div>
+
+        <div className="explanation-section">
+          <label>Descripción</label>
+          <textarea
+            className="editor-textarea"
+            placeholder="Escribe el contenido..."
+            value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
+          ></textarea>
+        </div>
+
+        <div className="actions-container">
+          <button className="btn-primary" type="submit" disabled={loading}>
+            {loading ? "Publicando..." : "Publicar"}
+          </button>
+        </div>
+      </form>
+
+      {mensaje && <p style={{ textAlign: "center", marginTop: "10px" }}>{mensaje}</p>}
     </div>
   );
 }
