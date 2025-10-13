@@ -1,0 +1,88 @@
+.containerAll{
+    width: 100%;
+    background-color: #fff;
+}
+
+.titleConsola{
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 40px 0 0 3%;
+}
+
+.titleConsola::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 10px;
+  background-color: #2a69ff;
+  border-radius: 4px;
+  margin: 0 5px 0 0 ;
+}
+
+.containerFormAdd{
+    display: flex;
+    width: 97%;
+    margin: 20px auto;
+}
+
+.containerInformacion{
+    display: flex;
+    width: 80%;
+    margin: 0 0.5% 0 0;
+    flex-wrap: wrap;
+}
+
+.containerTituloN{
+    width: 31.1%;
+    margin: 0 1%;
+}
+
+.text{
+    border: none;
+    background-color: #eeeeee;
+}
+
+.containerDescN{
+    width: 99%;
+    margin: 10px 1%;
+}
+
+.containerSombraImg{
+    background-color: #fff;
+    border-radius: 4px ;
+    padding: 2% 2%;
+    box-shadow: 0 0 10px 2px #ebebeb;
+}
+
+.InputDesc{
+    border: none;
+    background-color: #eeeeee;
+    height: 200px;
+    line-height: 1.2;
+    padding: 5px;
+    vertical-align: top;
+    width: 100%;
+}
+
+.InputDesc::placeholder{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.containerImgN{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: blue;
+}
+
+.imgSelect{
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+}

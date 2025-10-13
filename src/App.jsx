@@ -7,17 +7,20 @@ import Weekly from "./components/Weekly/Weekly";
 import Instagram from "./components/Instagram/Instagram";
 import Footer from "./components/Footer/Footer";
 import SecNews from "./Sec-News/Sec-news";
+import Login from "./pages/Login/Login";
+import Consola from "./pages/consola/Consola";
 import "./Firebase/client";
 function Layout({ children }) {
   const location = useLocation();
   // Array separado correctamente para que funcione la ocultación del Header
-  const rutasSinHeader = ["/noticia1"];
+  const rutasSinHeader = ["/noticia1", "/login"];
 
+  
   return (
     <>
-      {!rutasSinHeader.includes(location.pathname) && <Header />}
+      {!rutasSinHeader.includes(location.pathname) && <Header /> }
       <main>{children}</main>
-      <Footer />
+      <Footer/>
     </>
   );
 }
@@ -39,10 +42,10 @@ export default function App() {
           />
           {/* Rutas individuales para cada noticia */}
           <Route path="/noticia1" element={<Noticia1 />} />
-        
-          
           <Route path="/sec-news" element={<SecNews />} />
           <Route path="/videos" element={<Video />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/consola" element={<Consola />} />
         </Routes>
       </Layout>
     </Router>

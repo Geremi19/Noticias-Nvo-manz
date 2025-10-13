@@ -1,74 +1,103 @@
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../Firebase/client";
+import React, { useState, useEffect } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import "./Login.css";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [mail, setMail] = useState("");
+  const [psw, setPsw] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    // obtener altura del viewport
+    const altura = window.innerHeight;
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/admin"); // Redirige al CRUD si login es correcto
-    } catch (err) {
-      setError("Credenciales incorrectas o usuario no existe.");
-      console.error(err);
+    // aplicarla directamente al contenedor
+    const contenedor = document.querySelector(".containerAllLogin");
+    if (contenedor) {
+      contenedor.style.height = `${altura}px`;
+    }
+  }, []);
+
+  const irLogin = () => {
+    setMail("");
+    setPsw("");
+    Swal.fire({
+      icon: "success",
+      title: "Exito",
+      text: "Ingresaste correctamente",
+    });
+    setTimeout(() => {
+      navigate("/home");
+    }, [500]);
+  };
+
+  const VerificarLogin = () => {
+    if (!mail || !psw) {
+      Swal.fire({
+        icon: "warning",
+        title: "Advertencia",
+        text: "Llena ambos campos para continuar",
+      });
+      return;
+    } else {
+      const auth = getAuth();
+      signInWithEmailAndPassword(auth, mail, psw)
+        .then(() => {
+          setMail("");
+          setPsw("");
+          Swal.fire({
+            icon: "success",
+            title: "Exito",
+            text: "Ingresaste correctamente",
+          });
+          setTimeout(() => {
+            navigate("/consola");
+          }, [500]);
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "Credenciales no válidas",
+          });
+        });
     }
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "400px",
-        margin: "100px auto",
-        padding: "20px",
-        border: "1px solid #ccc",
-        borderRadius: "10px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.1)",
-      }}
-    >
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <input
-            type="email"
-            placeholder="Correo"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
+    <div className="containerAllLogin">
+      <div className="containerMedio">
+        <div className="containerFormulario">
+          <h2>Login</h2>
+          <h4>Ingresa tus credenciales para ir a la consola </h4>
+          <div className="containerLogin">
+            <h5>Correo</h5>
+            <input
+              type="text"
+              value={mail}
+              onChange={(e) => setMail(e.target.value)}
+              className="inputLogin"
+            />
+            <h5>Contraseña</h5>
+            <input
+              type="password"
+              value={psw}
+              onChange={(e) => setPsw(e.target.value)}
+              className="inputLogin"
+            />
+            <div className="containerBtn" onClick={VerificarLogin}>
+              Iniciar Sesión
+            </div>
+          </div>
+        </div>
+        <div className="containerImgLogin">
+          <img
+            src="../../../public/Login/WhatsApp Image 2025-10-09 at 5.36.33 PM.jpeg"
+            alt=""
           />
         </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            background: "#183C6F",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
-          Ingresar
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
