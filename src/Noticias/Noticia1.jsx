@@ -1,49 +1,65 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { db } from "../Firebase/client"; // Ajusta ruta si es necesario
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { doc, collection, addDoc, Timestamp, updateDoc, arrayUnion } from "firebase/firestore";
 import "./Noticias.css";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header/Header";
+import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Noticia1() {
+  const location = useLocation();
+  const {noticia} = location.state
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
   const [comentario, setComentario] = useState("");
-
+  const [altura, setAltura] = useState(window.innerHeight);
+  const [creado, setCreador] = useState(new Date());
   const handleEnviar = async () => {
     if (!nombre || !correo || !comentario) {
-      alert("Por favor completa todos los campos");
+      Swal.fire({
+        icon: "warning",
+        title: "Advertencia",
+        text: "Llena todos los campos para continuar",
+      });
       return;
     }
 
     try {
-      const docRef = await addDoc(collection(db, "noticias"), {
-        nombre,
-        correo,
-        comentario,
-        fecha: Timestamp.now(),
-        titulo: "Titulo de ejemplo desde React",
-        cuerpo: comentario,
-        imagen: "/buque.jpg"
+      const noticiaRef = doc(db, "noticias", noticia.id); // Asegúrate de que noticia.id esté definido
+
+      const nuevoComentario = {
+      nombre,
+      correo,
+      comentario // opcional para fecha
+      };
+
+      await updateDoc(noticiaRef, {
+      comentarios: arrayUnion(nuevoComentario)
       });
 
-      console.log("✅ Noticia publicada con ID:", docRef.id);
-      alert("Noticia publicada correctamente");
-
-      // Limpia los campos
+      Swal.fire({
+        icon: "success",
+        title: "Exito",
+        text: "Tu comentario ha sido enviado",
+      });
       setNombre("");
       setCorreo("");
       setComentario("");
-    } catch (error) {
-      console.error("❌ Error al publicar noticia:", error);
+    }catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Credenciales no válidas",
+      });
     }
   };
 
+  console.log(noticia)
+
   return (
-    <div className="containerAll">
+    <div className="containerAll"  >
       <Link to="/">
         <div className="containerBtnVolver">
           <i className="fa-solid fa-arrow-left"></i>
@@ -51,22 +67,22 @@ export default function Noticia1() {
       </Link>
 
       <div className="containerImg">
-        <img className="imgNoticia" src="/buque.jpg" alt="Noticia" />
+        <img className="imgNoticia"  src="/buque.jpg" alt="Noticia" />
       </div>
 
       <div className="containerText">
-        <h1>Titulo de Noticia</h1>
+        <h1>{noticia.titulo}</h1>
         <div className="containerCreador">
           <div className="creator">
             <FontAwesomeIcon icon={faUser} />
-            <p>Autor</p>
+            <p>{noticia.nombre}</p>
           </div>
-          <p>30/12/2024</p>
+          <p style={{fontWeight:"bold"}}>{noticia.fecha} </p>
         </div>
 
         <div className="containerTxt">
-          <p>
-            Este es el cuerpo de la noticia de ejemplo. Aquí podrías mostrar una noticia publicada previamente.
+          <p style={{ whiteSpace: "pre-line" }}>
+            {noticia.cuerpo}
           </p>
         </div>
       </div>
@@ -111,14 +127,16 @@ export default function Noticia1() {
               onChange={(e) => setComentario(e.target.value)}
             />
           </div>
-        </div>
 
-        <div className="containerBtnAdd" onClick={handleEnviar}>
-          <div className="btnAdd">
-            <i className="fa-solid fa-comment-dots"></i>
-            <p>Enviar comentario</p>
+          <div className="containerBtnAdd" onClick={handleEnviar}>
+            <div className="btnAdd">
+              <i className="fa-solid fa-comment-dots"></i>
+              <p>Enviar comentario</p>
+            </div>
           </div>
         </div>
+
+        
       </div>
 
     </div>

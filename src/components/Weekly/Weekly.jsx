@@ -1,7 +1,39 @@
 import { newsItems, socialMedia } from "../../utils/data_weekly";
 import "./Weekly.css";
+import { useEffect, useState } from "react";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "../../Firebase/client";
+import { CiTimer, CiCalendar} from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 export default function Weekly() {
+  const navigate = useNavigate();
+  const [noticias, setNoticias] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  const fetchNoticias = async () => {
+    try {
+      const q = query(collection(db, "noticias"));
+      const querySnapshot = await getDocs(q);
+      const noticiasArray = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setNoticias(noticiasArray);
+      setLoading(false);
+      console.log(noticiasArray);
+    }catch (error) {
+      console.error("Error fetching noticias: ", error);
+      setLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchNoticias();
+  }, []);
+
   return (
     <div className="noticias-page">
       <div className="noticias-content">
@@ -15,26 +47,26 @@ export default function Weekly() {
           </div>
 
           <div className="news-grid">
-            {newsItems.map((item) => (
-              <article key={item.id} className="news-card">
+            {noticias.slice(0,6).map((item) => (
+              <article key={item.id} className="news-card" onClick={()=> navigate("/noticia1",{state : {noticia: item}})}> 
                 <div className="news-image-wrapper">
                   <img
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
+                    src="../Weekly/club-yates.jpg"
+                    alt="imagen prueba"
                     className="news-image"
                   />
                 </div>
                 <div className="news-content">
-                  <h3 className="news-title">{item.title}</h3>
+                  <h3 className="news-title">{item.titulo}</h3>
                   <div className="news-meta">
                     <span className="news-date">
-                      {item.date.icon} {item.date.date}
+                      {item.fecha} <CiTimer /> 15 MINS
                     </span>
                     <span className="news-time">
-                      {item.readTime.icon} {item.readTime.time}
+                      {} {}
                     </span>
                   </div>
-                  <p className="news-description">{item.description}</p>
+                  <p className="news-description">{item.cuerpo}</p>
                 </div>
               </article>
             ))}

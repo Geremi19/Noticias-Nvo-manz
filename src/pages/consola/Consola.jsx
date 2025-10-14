@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./Consola.css";
 import { db } from "../../Firebase/client"; // ajusta la ruta
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { getFirestore, collection, addDoc, Timestamp, orderBy } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
+import Swal from "sweetalert2";
 export default function Consola() {
+
+
   const [titulo, setTitulo] = useState("");
   const [nombre, setNombre] = useState("");
   const [fecha, setFecha] = useState("");
@@ -15,41 +17,60 @@ export default function Consola() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!titulo || !nombre || !fecha || !descripcion) {
-      setMensaje("Por favor llena todos los campos.");
-      return;
-    }
 
-    setLoading(true);
-    try {
-      let imageUrl = "";
-      if (imagen) {
-        const storage = getStorage();
-        const storageRef = ref(storage, `noticias/${imagen.name}`);
-        await uploadBytes(storageRef, imagen);
-        imageUrl = await getDownloadURL(storageRef);
-      }
-
-      await addDoc(collection(db, "noticias"), {
-        titulo,
-        nombre,
-        fecha,
-        cuerpo: descripcion,
-        imagen: imageUrl,
-        creadoEn: Timestamp.now(),
+    // Validar que los campos no estén vacíos
+    if (!titulo || !nombre || !fecha || !descripcion ) {
+      Swal.fire({
+        icon: "warning",
+        title: "Advertencia",
+        text: "Llena todos los campos para continuar",
       });
+      return;
+  }
 
-      setMensaje("✅ Noticia publicada correctamente!");
-      setTitulo("");
-      setNombre("");
-      setFecha("");
-      setDescripcion("");
-      setImagen(null);
-    } catch (error) {
-      console.error("Error al subir noticia:", error);
-      setMensaje("❌ Error al subir noticia.");
-    }
-    setLoading(false);
+  setLoading(true);
+
+  try {
+    // // 1️⃣ Subir la imagen a Firebase Storage
+    // const storageRef = ref(storage, `imagenes/${imagen.name}`);
+    // await uploadBytes(storageRef, imagen);
+
+    // // 2️⃣ Obtener URL de descarga
+    // const url = await getDownloadURL(storageRef);
+
+    // 3️⃣ Guardar el documento en Firestore
+    await addDoc(collection(db, "noticias"),orderBy("creadoEn"), {
+      titulo,
+      nombre,
+      fecha,
+      cuerpo: descripcion,
+      creadoEn: Timestamp.now(),
+    });
+
+    // 4️⃣ Alerta de éxito
+    Swal.fire({
+      icon: "success",
+      title: "Éxito",
+      text: "Noticia agregada correctamente",
+    });
+
+    // 5️⃣ Reset de los campos
+    setTitulo("");
+    setNombre("");
+    setFecha("");
+    setDescripcion("");
+    setImagen(null);
+
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Ocurrió un problema al subir la noticia",
+    });
+  }
+
+  setLoading(false);
   };
 
   return (
