@@ -4,7 +4,7 @@ import "./News.css";
 
 export default function Noticias() {
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  
   const slides = [
     {
       image: "./News_image/puerto1.jpg",

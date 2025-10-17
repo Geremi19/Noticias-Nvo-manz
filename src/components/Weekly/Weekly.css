@@ -226,6 +226,16 @@
   }
 }
 
+@media (max-width: 955px) {
+  .section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  }
+}
+
+
 @media (max-width: 768px) {
   .news-grid {
     grid-template-columns: 1fr;

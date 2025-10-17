@@ -2,10 +2,16 @@ import Footer from "../components/Footer/Footer";
 import "./Sec-news.css";
 import { newsData } from "../utils/data_sec-news";
 import { carouselData } from "../utils/carouselData";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "../Firebase/client";
 
 export default function SecNews() {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [noticias, setNoticias] = useState([]);
+  
 
   const nextSlide = () => {
     const newIndex = (currentIndex + 1) % carouselData.length;
@@ -17,6 +23,25 @@ export default function SecNews() {
     setCurrentIndex(newIndex);
   };
 
+  const fetchNoticias = async () => {
+    try {
+      const q = query(collection(db, "noticias"));
+      const querySnapshot = await getDocs(q);
+      const noticiasArray = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setNoticias(noticiasArray);
+    }catch (error) {
+      console.error("Error fetching noticias: ", error);
+    }
+  };
+
+  useEffect(() => {
+      fetchNoticias();
+    }, 
+  []);
+
   return (
     <div className="sec-news">
       <header className="sec-news__header">
@@ -26,12 +51,12 @@ export default function SecNews() {
 
       {/* Sección de Cards */}
       <section className="news-grid">
-        {newsData.map((news) => (
-          <article key={news.id} className="news-card">
-            <img src={news.image} alt={news.title} className="news-card__image" />
+        {noticias.map((news) => (
+          <article key={news.id} className="news-card" onClick={()=> navigate("/noticia1",{state : {noticia: news}})}>
+            <img src=".././Sec_news/bandera.jpg" alt={news.nombre} className="news-card__image" />
             <div className="news-card__content">
-              <h3 className="news-card__title">{news.title}</h3>
-              <p className="news-card__excerpt">{news.excerpt}</p>
+              <h3 className="news-card__title">{news.titulo}</h3>
+              <p className="news-card__excerpt">{news.cuerpo}</p>
               <footer className="news-card__footer">
                 <div className="news-card__author">
                   <div className="news-card__avatar">
@@ -41,8 +66,8 @@ export default function SecNews() {
                     </svg>
                   </div>
                   <div className="news-card__author-info">
-                    <span className="news-card__author-name">{news.author}</span>
-                    <time className="news-card__date">{news.date}</time>
+                    <span className="news-card__author-name">{news.nombre}</span>
+                    <time className="news-card__date">{news.fecha}</time>
                   </div>
                 </div>
               </footer>

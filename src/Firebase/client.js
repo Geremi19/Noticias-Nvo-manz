@@ -27,5 +27,5 @@ const db = getFirestore(app);
 
 export { app, db, analytics };
 
-console.log(app);
+// console.log(app);
 

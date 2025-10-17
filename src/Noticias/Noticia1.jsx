@@ -1,22 +1,25 @@
 import { use, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser,faUserCircle  } from "@fortawesome/free-solid-svg-icons";
 import { db } from "../Firebase/client"; // Ajusta ruta si es necesario
-import { doc, collection, addDoc, Timestamp, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import "./Noticias.css";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Noticia1() {
   const location = useLocation();
-  const {noticia} = location.state
+  const {noticia} = location.state;
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
   const [comentario, setComentario] = useState("");
-  const [altura, setAltura] = useState(window.innerHeight);
-  const [creado, setCreador] = useState(new Date());
+  const [noticiaActual, setNoticiaActual] = useState([]);
+
+  console.log(window.innerWidth);
+
   const handleEnviar = async () => {
+    
     if (!nombre || !correo || !comentario) {
       Swal.fire({
         icon: "warning",
@@ -32,7 +35,7 @@ export default function Noticia1() {
       const nuevoComentario = {
       nombre,
       correo,
-      comentario // opcional para fecha
+      comentario,
       };
 
       await updateDoc(noticiaRef, {
@@ -47,6 +50,7 @@ export default function Noticia1() {
       setNombre("");
       setCorreo("");
       setComentario("");
+      traerNoticia();
     }catch (error) {
       Swal.fire({
         icon: "error",
@@ -56,7 +60,23 @@ export default function Noticia1() {
     }
   };
 
-  console.log(noticia)
+  const traerNoticia = async () => {
+    try 
+    {
+      const noticiaRef = doc(db, "noticias", noticia.id);
+      const noticiaSnap = await getDoc(noticiaRef);
+      const data = noticiaSnap.data();
+      setNoticiaActual(data.comentarios || []);
+
+    }catch (error) {
+      console.error("Error fetching noticia: ", error);
+    }
+    
+  }
+
+  useEffect(() => {
+    traerNoticia();
+  }, []);
 
   return (
     <div className="containerAll"  >
@@ -86,6 +106,25 @@ export default function Noticia1() {
           </p>
         </div>
       </div>
+
+      <div className="containerComentarios">
+        <div className="containerAddC">
+          <div className="puntoAzul"></div>
+          <h5>Comentarios</h5>
+        </div>
+
+        {noticiaActual.length === 0 ? (
+          <p className="noComentarios">Aún no hay comentarios</p>
+          ) : (
+          noticiaActual.map((comentario, index) => (
+            <div key={index} className="comentario">
+              <FontAwesomeIcon icon={faUserCircle} className="iconComent" />
+              <p className="comentarioName">{comentario.nombre}</p>
+              <p className="comentarioCuerpo">{comentario.comentario}</p>
+            </div>
+          ))
+        )}
+    </div>
 
       <div className="containerAdd">
         <div className="containerAddC">

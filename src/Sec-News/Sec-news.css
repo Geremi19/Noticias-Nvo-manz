@@ -95,6 +95,11 @@
   color: #666;
   margin: 0;
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* número de líneas a mostrar */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .news-card__footer {

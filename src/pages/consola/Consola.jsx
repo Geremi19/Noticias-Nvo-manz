@@ -39,7 +39,7 @@ export default function Consola() {
     // const url = await getDownloadURL(storageRef);
 
     // 3️⃣ Guardar el documento en Firestore
-    await addDoc(collection(db, "noticias"),orderBy("creadoEn"), {
+    await addDoc(collection(db, "noticias"), {
       titulo,
       nombre,
       fecha,
@@ -68,6 +68,7 @@ export default function Consola() {
       title: "Error",
       text: "Ocurrió un problema al subir la noticia",
     });
+    console.log(error);
   }
 
   setLoading(false);

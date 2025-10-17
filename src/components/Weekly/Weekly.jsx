@@ -22,7 +22,6 @@ export default function Weekly() {
       }));
       setNoticias(noticiasArray);
       setLoading(false);
-      console.log(noticiasArray);
     }catch (error) {
       console.error("Error fetching noticias: ", error);
       setLoading(false);
